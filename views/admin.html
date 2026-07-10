@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - IssueTrack Pro</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    :root {
+      --bg-primary: #0e0e16;
+      --bg-secondary: #111118;
+      --bg-card: #16161f;
+      --border: rgba(255,255,255,0.06);
+      --border-purple: rgba(139,92,246,0.25);
+      --purple: #8B5CF6;
+      --purple-light: #A78BFA;
+      --purple-glow: rgba(139,92,246,0.12);
+      --text-primary: #F1F5F9;
+      --text-secondary: #94A3B8;
+      --text-muted: #4B5563;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --blue: #3B82F6;
+      --sidebar-width: 230px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+    }
+
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0;
+      height: 100vh;
+      padding: 20px 14px;
+      z-index: 50;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      margin-bottom: 28px;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 14px rgba(139,92,246,0.3);
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .brand-name span { color: var(--purple-light); }
+
+    .nav-section-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      padding: 0 10px;
+      margin-bottom: 6px;
+      margin-top: 18px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 10px;
+      border-radius: 9px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+    }
+
+    .nav-link:hover {
+      background: rgba(255,255,255,0.04);
+      color: var(--text-primary);
+    }
+
+    .nav-link.active {
+      background: var(--purple-glow);
+      color: var(--purple-light);
+      border-color: var(--border-purple);
+    }
+
+    .nav-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .filter-section {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0 4px;
+    }
+
+    .filter-select {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .filter-select:focus {
+      border-color: var(--border-purple);
+      color: var(--text-primary);
+    }
+
+    .filter-select option { background: #111118; }
+
+    .sidebar-bottom {
+      margin-top: auto;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+    }
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .user-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .user-role { font-size: 11px; color: var(--purple-light); font-weight: 500; }
+
+    .main {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 32px 36px;
+      min-height: 100vh;
+    }
+
+    .page-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--purple-light);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+
+    .page-title {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.7px;
+      margin-bottom: 4px;
+    }
+
+    .page-sub {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      transition: border-color 0.3s;
+      cursor: pointer;
+    }
+
+    .stat-card:hover { border-color: var(--border-purple); }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .stat-value { font-size: 26px; font-weight: 800; margin-bottom: 3px; }
+    .stat-sub { font-size: 11px; color: var(--text-muted); }
+
+    .kanban-board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .kanban-col {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      transition: all 0.3s;
+    }
+
+    .col-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .col-title {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .col-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .col-dot.pending { background: var(--warning); }
+    .col-dot.progress { background: var(--blue); }
+    .col-dot.resolved { background: var(--success); }
+
+    .col-count {
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-muted);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .col-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 80px;
+    }
+
+    .r-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      transition: all 0.2s;
+    }
+
+    .r-card:hover {
+      border-color: var(--border-purple);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25), 0 0 12px var(--purple-glow);
+    }
+
+    .r-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .r-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.4;
+      flex: 1;
+      text-transform: capitalize;
+    }
+
+    .cat-tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--purple-glow);
+      color: var(--purple-light);
+      border: 1px solid var(--border-purple);
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+    .r-desc {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .r-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .r-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .r-meta svg { width: 11px; height: 11px; }
+
+    .r-photo {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .status-select {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 7px 10px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .status-select:focus { border-color: var(--border-purple); }
+    .status-select option { background: #111118; }
+
+    .delete-btn {
+      background: rgba(239,68,68,0.1);
+      color: #EF4444;
+      border: 1px solid rgba(239,68,68,0.2);
+      padding: 7px 12px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: inherit;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .delete-btn:hover { background: rgba(239,68,68,0.2); }
+    .delete-btn svg { width: 12px; height: 12px; }
+
+    .submitter-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .submitter-tag svg { width: 11px; height: 11px; }
+
+    .empty-col {
+      text-align: center;
+      padding: 30px 10px;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <a href="/" class="sidebar-brand">
+    <div class="brand-logo">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M12 22s8-8.5 8-13a8 8 0 1 0-16 0c0 4.5 8 13 8 13z" fill="white"/>
+        <circle cx="12" cy="9" r="3" fill="#8B5CF6"/>
+      </svg>
+    </div>
+    <span class="brand-name">IssueTrack <span>Pro</span></span>
+  </a>
+
+  <span class="nav-section-label">Admin</span>
+
+  <a href="/admin.html" class="nav-link active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="3" width="7" height="7" rx="1"/>
+      <rect x="14" y="3" width="7" height="7" rx="1"/>
+      <rect x="3" y="14" width="7" height="7" rx="1"/>
+      <rect x="14" y="14" width="7" height="7" rx="1"/>
+    </svg>
+    All Reports
+  </a>
+
+  <span class="nav-section-label">Filter Reports</span>
+
+  <div class="filter-section">
+    <select class="filter-select" id="filter-status" onchange="loadReports()">
+      <option value="">All Statuses</option>
+      <option value="pending">Pending</option>
+      <option value="in-progress">In Progress</option>
+      <option value="resolved">Resolved</option>
+    </select>
+    <select class="filter-select" id="filter-category" onchange="loadReports()">
+      <option value="">All Categories</option>
+      <option value="roads">Roads</option>
+      <option value="waste">Waste</option>
+      <option value="electricity">Electricity</option>
+      <option value="water">Water</option>
+      <option value="drainage">Drainage</option>
+      <option value="health">Health</option>
+    </select>
+  </div>
+
+  <span class="nav-section-label">Account</span>
+  <button onclick="logout()" class="nav-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+      <polyline points="16 17 21 12 16 7"/>
+      <line x1="21" y1="12" x2="9" y2="12"/>
+    </svg>
+    Logout
+  </button>
+
+  <div class="sidebar-bottom">
+    <div class="user-card">
+      <div class="user-avatar" id="avatar">A</div>
+      <div>
+        <div class="user-name" id="uname">Admin</div>
+        <div class="user-role">Administrator</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="main">
+  <div class="page-label">Administration</div>
+  <h1 class="page-title">Issue Management</h1>
+  <p class="page-sub">Review, update and resolve all community reports</p>
+
+  <div class="stats-row">
+    <div class="stat-card" onclick="filterBoard('all')">
+      <div class="stat-label">Total Reports</div>
+      <div class="stat-value" id="s-total">0</div>
+      <div class="stat-sub">Click to show all</div>
+    </div>
+    <div class="stat-card" onclick="filterBoard('pending')">
+      <div class="stat-label">Pending</div>
+      <div class="stat-value" id="s-pending" style="color:#F59E0B">0</div>
+      <div class="stat-sub">Click to view</div>
+    </div>
+    <div class="stat-card" onclick="filterBoard('in-progress')">
+      <div class="stat-label">In Progress</div>
+      <div class="stat-value" id="s-progress" style="color:#3B82F6">0</div>
+      <div class="stat-sub">Click to view</div>
+    </div>
+    <div class="stat-card" onclick="filterBoard('resolved')">
+      <div class="stat-label">Resolved</div>
+      <div class="stat-value" id="s-resolved" style="color:#10B981">0</div>
+      <div class="stat-sub">Click to view</div>
+    </div>
+  </div>
+
+  <div class="kanban-board">
+    <div class="kanban-col">
+      <div class="col-header">
+        <div class="col-title">
+          <span class="col-dot pending"></span> Pending
+        </div>
+        <span class="col-count" id="c-pending">0</span>
+      </div>
+      <div class="col-cards" id="col-pending"></div>
+    </div>
+    <div class="kanban-col">
+      <div class="col-header">
+        <div class="col-title">
+          <span class="col-dot progress"></span> In Progress
+        </div>
+        <span class="col-count" id="c-progress">0</span>
+      </div>
+      <div class="col-cards" id="col-progress"></div>
+    </div>
+    <div class="kanban-col">
+      <div class="col-header">
+        <div class="col-title">
+          <span class="col-dot resolved"></span> Resolved
+        </div>
+        <span class="col-count" id="c-resolved">0</span>
+      </div>
+      <div class="col-cards" id="col-resolved"></div>
+    </div>
+  </div>
+</main>
+
+<script>
+  function checkAuth() {
+    fetch('/auth/me')
+    .then(function(r) {
+      if (!r.ok) { window.location.href = '/login.html'; return; }
+      return r.json();
+    })
+    .then(function(d) {
+      if (!d) return;
+      if (d.user.role !== 'admin') { window.location.href = '/dashboard.html'; return; }
+      document.getElementById('uname').textContent = d.user.username;
+      document.getElementById('avatar').textContent = d.user.username.charAt(0).toUpperCase();
+      loadReports();
+    });
+  }
+
+  function loadReports() {
+    var status = document.getElementById('filter-status').value;
+    var category = document.getElementById('filter-category').value;
+    var url = '/admin/reports?';
+    if (status) url += 'status=' + status + '&';
+    if (category) url += 'category=' + category;
+
+    fetch(url)
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      var all = d.reports;
+      var pending = all.filter(function(r) { return r.status === 'pending'; });
+      var progress = all.filter(function(r) { return r.status === 'in-progress'; });
+      var resolved = all.filter(function(r) { return r.status === 'resolved'; });
+      document.getElementById('s-total').textContent = all.length;
+      document.getElementById('s-pending').textContent = pending.length;
+      document.getElementById('s-progress').textContent = progress.length;
+      document.getElementById('s-resolved').textContent = resolved.length;
+      document.getElementById('c-pending').textContent = pending.length;
+      document.getElementById('c-progress').textContent = progress.length;
+      document.getElementById('c-resolved').textContent = resolved.length;
+
+      renderCol('col-pending', pending);
+      renderCol('col-progress', progress);
+      renderCol('col-resolved', resolved);
+    });
+  }
+
+  function renderCol(id, reports) {
+    var col = document.getElementById(id);
+    if (reports.length === 0) {
+      col.innerHTML = '<div class="empty-col">No reports here</div>';
+      return;
+    }
+    col.innerHTML = reports.map(function(r) {
+      return '<div class="r-card">' +
+        '<div class="r-card-top">' +
+          '<div class="r-title">' + r.title + '</div>' +
+          '<span class="cat-tag">' + r.category + '</span>' +
+        '</div>' +
+        (r.photo ? '<img src="/uploads/' + r.photo + '" class="r-photo">' : '') +
+        '<div class="r-desc">' + r.description + '</div>' +
+        '<div class="submitter-tag">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>' +
+          (r.submittedBy ? r.submittedBy.username : 'Unknown') +
+        '</div>' +
+        '<div class="r-footer">' +
+          '<span class="r-meta">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-8.5 8-13a8 8 0 1 0-16 0c0 4.5 8 13 8 13z"/><circle cx="12" cy="9" r="3"/></svg>' +
+            r.location +
+          '</span>' +
+          '<span class="r-meta">' + new Date(r.createdAt).toLocaleDateString() + '</span>' +
+        '</div>' +
+        '<div class="admin-actions">' +
+          '<select class="status-select" onchange="updateStatus(\'' + r._id + '\', this.value)">' +
+            '<option value="">Move to...</option>' +
+            '<option value="pending"' + (r.status === 'pending' ? ' selected' : '') + '>Pending</option>' +
+            '<option value="in-progress"' + (r.status === 'in-progress' ? ' selected' : '') + '>In Progress</option>' +
+            '<option value="resolved"' + (r.status === 'resolved' ? ' selected' : '') + '>Resolved</option>' +
+          '</select>' +
+          '<button onclick="deleteReport(\'' + r._id + '\')" class="delete-btn">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>' +
+            'Delete' +
+          '</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  function updateStatus(id, status) {
+    if (!status) return;
+    fetch('/admin/reports/' + id, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: status })
+    })
+    .then(function() { loadReports(); });
+  }
+
+  function deleteReport(id) {
+    if (!confirm('Delete this report permanently?')) return;
+    fetch('/admin/reports/' + id, { method: 'DELETE' })
+    .then(function() { loadReports(); });
+  }
+
+  function filterBoard(status) {
+    var cols = document.querySelectorAll('.kanban-col');
+    if (status === 'all') {
+      cols.forEach(function(col) {
+        col.style.opacity = '1';
+        col.style.border = '1px solid rgba(255,255,255,0.06)';
+      });
+      return;
+    }
+    var map = { 'pending': 0, 'in-progress': 1, 'resolved': 2 };
+    cols.forEach(function(col, i) {
+      if (i === map[status]) {
+        col.style.opacity = '1';
+        col.style.border = '1px solid rgba(139,92,246,0.4)';
+        col.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        col.style.opacity = '0.3';
+        col.style.border = '1px solid rgba(255,255,255,0.06)';
+      }
+    });
+  }
+  function logout() {
+    fetch('/auth/logout', { method: 'POST' })
+    .then(function() { window.location.href = '/'; });
+  }
+
+  checkAuth();
+</script>
+
+</body>
+</html>

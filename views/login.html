@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - IssueTrack Pro</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body {
+      background: #111118;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .form-logo {
+      position: fixed;
+      top: 28px;
+      left: 36px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .form-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-logo-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .form-wrapper {
+      width: 100%;
+      max-width: 620px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-question {
+      font-size: 26px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 28px;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: -0.5px;
+      line-height: 1.3;
+    }
+
+    .form-question span {
+      color: #8B5CF6;
+    }
+
+    .micro-input {
+      width: 100%;
+      background: #1a1a2e;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 18px 20px;
+      font-size: 16px;
+      color: rgba(255,255,255,0.85);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 12px;
+    }
+
+    .micro-input::placeholder {
+      color: rgba(255,255,255,0.3);
+    }
+
+    .micro-input:focus {
+      border-color: rgba(139, 92, 246, 0.5);
+    }
+
+    .form-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 28px 0 20px;
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+    }
+
+    .press-hint {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .press-hint span {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 5px;
+      padding: 2px 7px;
+      font-size: 12px;
+    }
+
+    .next-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: #080808;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .next-btn:hover {
+      background: rgba(255,255,255,0.88);
+      transform: translateY(-1px);
+    }
+
+    .next-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .form-hint {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+      font-family: 'Inter', sans-serif;
+      margin-top: 20px;
+    }
+
+    .form-hint a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .error-msg {
+      font-size: 13px;
+      color: #EF4444;
+      font-family: 'Inter', sans-serif;
+      margin-top: 6px;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    .error-msg.visible {
+      display: block;
+    }
+
+    .success-msg {
+      font-size: 13px;
+      color: #10B981;
+      font-family: 'Inter', sans-serif;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .success-msg.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="form-logo">
+    <div class="form-logo-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M12 22s8-8.5 8-13a8 8 0 1 0-16 0c0 4.5 8 13 8 13z" fill="white"/>
+        <circle cx="12" cy="9" r="3" fill="#8B5CF6"/>
+      </svg>
+    </div>
+    <span class="form-logo-name">IssueTrack Pro</span>
+  </a>
+
+  <div class="form-wrapper">
+    <div class="form-question">Welcome back </div>
+
+    <input class="micro-input" type="email" id="email" placeholder="Enter your email address" autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')">
+    <input class="micro-input" type="password" id="password" placeholder="Enter your password" autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')">
+
+    <div class="error-msg" id="error-msg">Invalid email or password</div>
+    <div class="success-msg" id="success-msg">Login successful! Redirecting...</div>
+
+    <hr class="form-divider">
+
+    <div class="form-footer">
+      <span class="press-hint">Press enter <span>↵</span> or</span>
+      <button class="next-btn" onclick="login()">
+        Login
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="form-hint">Don't have an account? <a href="/register.html">Register here</a></div>
+  </div>
+
+  <script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') login();
+    });
+
+    function login() {
+      var email = document.getElementById('email').value.trim();
+      var password = document.getElementById('password').value;
+      var errorDiv = document.getElementById('error-msg');
+      var successDiv = document.getElementById('success-msg');
+
+      if (!email || !password) {
+        errorDiv.textContent = 'Please fill in all fields';
+        errorDiv.classList.add('visible');
+        setTimeout(function() { errorDiv.classList.remove('visible'); }, 3000);
+        return;
+      }
+
+      fetch('/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, password: password })
+      })
+      .then(function(response) {
+        return response.json().then(function(data) {
+          return { ok: response.ok, data: data };
+        });
+      })
+      .then(function(result) {
+        if (result.ok) {
+          successDiv.classList.add('visible');
+          setTimeout(function() {
+            if (result.data.user.role === 'admin') {
+              window.location.href = '/admin.html';
+            } else {
+              window.location.href = '/dashboard.html';
+            }
+          }, 1500);
+        } else {
+          errorDiv.textContent = result.data.message;
+          errorDiv.classList.add('visible');
+          setTimeout(function() { errorDiv.classList.remove('visible'); }, 3000);
+        }
+      })
+      .catch(function() {
+        errorDiv.textContent = 'Something went wrong. Please try again.';
+        errorDiv.classList.add('visible');
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IssueTrack Pro - Community Issue Reporting</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 22s8-8.5 8-13a8 8 0 1 0-16 0c0 4.5 8 13 8 13z" fill="#8B5CF6"/>
+        <circle cx="12" cy="9" r="3" fill="white"/>
+      </svg>
+      IssueTrack Pro
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="/login.html">Login</a>
+      <a href="/register.html" class="btn-signup">Get Started Free</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <h1>Report Community Issues. <span class="highlight">Get Results.</span></h1>
+      <p>A simple, fast platform that connects residents with local authorities to fix infrastructure problems — roads, waste, electricity, water and more.</p>
+      <div class="hero-buttons">
+        <a href="/register.html" class="btn-primary-hero">SIGN UP FOR FREE</a>
+        <a href="#how-it-works" class="btn-watch">
+          <span class="play-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </span>
+          See how it works
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="showcase-wrapper">
+        <div class="showcase-bg-circle"></div>
+        <div class="showcase-bg-circle-2"></div>
+
+        <!-- STATE 1 -->
+        <div class="showcase-state active" id="state-1">
+          <div class="showcase-card card-main">
+            <div class="card-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="12" y1="18" x2="12" y2="12"/>
+                <line x1="9" y1="15" x2="15" y2="15"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-label">New Report</div>
+              <div class="card-title">Pothole on Broad Street</div>
+              <div class="card-meta">Category: Roads · Lagos Island</div>
+            </div>
+            <span class="status-dot pending">Pending</span>
+          </div>
+          <div class="showcase-card card-small card-left">
+            <div class="card-svg-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+            </div>
+            <div class="card-sm-text">Photo attached</div>
+          </div>
+          <div class="showcase-card card-small card-right">
+            <div class="card-svg-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2">
+                <path d="M12 22s8-8.5 8-13a8 8 0 1 0-16 0c0 4.5 8 13 8 13z"/>
+                <circle cx="12" cy="9" r="3"/>
+              </svg>
+            </div>
+            <div class="card-sm-text">Location saved</div>
+          </div>
+        </div>
+
+        <!-- STATE 2 -->
+        <div class="showcase-state" id="state-2">
+          <div class="showcase-card card-main">
+            <div class="card-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-label">Status Updated</div>
+              <div class="card-title">Blocked Drainage — Ikeja</div>
+              <div class="card-meta">Category: Drainage · Updated now</div>
+            </div>
+            <span class="status-dot in-progress">In Progress</span>
+          </div>
+          <div class="showcase-card card-small card-left">
+            <div class="card-svg-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="card-sm-text">Team assigned</div>
+          </div>
+          <div class="showcase-card card-small card-right">
+            <div class="card-svg-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+            </div>
+            <div class="card-sm-text">User notified</div>
+          </div>
+        </div>
+
+        <!-- STATE 3 -->
+        <div class="showcase-state" id="state-3">
+          <div class="showcase-card card-main">
+            <div class="card-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-label">Issue Resolved</div>
+              <div class="card-title">Broken Streetlight Fixed</div>
+              <div class="card-meta">Category: Electricity · Surulere</div>
+            </div>
+            <span class="status-dot resolved">Resolved</span>
+          </div>
+          <div class="showcase-card card-small card-left">
+            <div class="card-svg-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div class="card-sm-text">3 days total</div>
+          </div>
+          <div class="showcase-card card-small card-right">
+            <div class="card-svg-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <div class="card-sm-text">Authority confirmed</div>
+          </div>
+        </div>
+
+        <!-- STATE 4 -->
+        <div class="showcase-state" id="state-4">
+          <div class="showcase-card card-main">
+            <div class="card-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-label">Admin Dashboard</div>
+              <div class="card-title">24 Reports This Week</div>
+              <div class="card-meta">8 Resolved · 10 In Progress · 6 Pending</div>
+            </div>
+            <span class="status-dot admin">Live</span>
+          </div>
+          <div class="showcase-card card-small card-left">
+            <div class="card-svg-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </div>
+            <div class="card-sm-text">+12% resolved</div>
+          </div>
+          <div class="showcase-card card-small card-right">
+            <div class="card-svg-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <div class="card-sm-text">All categories</div>
+          </div>
+        </div>
+
+        <div class="showcase-dots">
+          <span class="dot active" onclick="goToState(0)"></span>
+          <span class="dot" onclick="goToState(1)"></span>
+          <span class="dot" onclick="goToState(2)"></span>
+          <span class="dot" onclick="goToState(3)"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="features-header">
+      <h2>Everything you need to fix your community</h2>
+      <p>A complete platform for residents and local authorities</p>
+    </div>
+    <div class="features-grid">
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 22s8-8.5 8-13a8 8 0 1 0-16 0c0 4.5 8 13 8 13z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+        </div>
+        <h3>Location-Based Reporting</h3>
+        <p>Submit reports with exact location details so authorities know precisely where to respond.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
+        <h3>Photo Evidence</h3>
+        <p>Attach photos to your reports to give authorities a clear picture of the problem.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="23 4 23 10 17 10"/>
+            <polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+        </div>
+        <h3>Real-Time Status Tracking</h3>
+        <p>Watch your report move from Pending to In Progress to Resolved in real time.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="5" rx="1"/>
+            <rect x="14" y="10" width="7" height="11" rx="1"/>
+            <rect x="3" y="13" width="7" height="8" rx="1"/>
+          </svg>
+        </div>
+        <h3>Admin Dashboard</h3>
+        <p>Local authorities get a powerful dashboard to manage, prioritize and resolve reports efficiently.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <h3>Issue Categories</h3>
+        <p>Reports are organized by category — roads, waste, electricity, water, drainage and health.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="4" width="14" height="10" rx="2"/>
+            <path d="M6 18h6M19 8h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-1"/>
+          </svg>
+        </div>
+        <h3>Works on Any Device</h3>
+        <p>Access IssueTrack Pro from any smartphone, tablet or computer — no app download needed.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="features-header">
+      <h2>How It Works</h2>
+      <p>Three simple steps to get your community issue resolved</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Submit a Report</h3>
+        <p>Describe the issue, select a category, add your location and attach a photo.</p>
+      </div>
+      <div class="step-arrow">&#8594;</div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Authority Reviews</h3>
+        <p>Local authorities receive your report, assign it and update the status.</p>
+      </div>
+      <div class="step-arrow">&#8594;</div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Issue Resolved</h3>
+        <p>Track progress in real time and get confirmation when your issue is fixed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to improve your community?</h2>
+    <p>Join IssueTrack Pro and start making a difference today.</p>
+    <a href="/register.html" class="btn-primary-hero">Get Started For Free</a>
+  </section>
+
+  <footer>
+    <p>IssueTrack Pro &copy; 2025 | Improving Nigerian Communities Through Technology</p>
+  </footer>
+
+  <script>
+    var currentState = 0;
+    var states = document.querySelectorAll('.showcase-state');
+    var dots = document.querySelectorAll('.dot');
+    var autoPlay = setInterval(nextState, 3000);
+
+    function nextState() {
+      states[currentState].classList.remove('active');
+      dots[currentState].classList.remove('active');
+      currentState = (currentState + 1) % states.length;
+      states[currentState].classList.add('active');
+      dots[currentState].classList.add('active');
+    }
+
+    function goToState(index) {
+      clearInterval(autoPlay);
+      states[currentState].classList.remove('active');
+      dots[currentState].classList.remove('active');
+      currentState = index;
+      states[currentState].classList.add('active');
+      dots[currentState].classList.add('active');
+      autoPlay = setInterval(nextState, 3000);
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.feature-item, .step').forEach(function(el) {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
