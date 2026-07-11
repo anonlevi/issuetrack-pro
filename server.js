@@ -26,32 +26,33 @@ app.use('/auth', require('./routes/auth'));
 app.use('/reports', require('./routes/reports'));
 app.use('/admin', require('./routes/admin'));
 
-// Serve all HTML pages
+// --- Serve all HTML pages (Supporting both clean and .html paths) ---
+
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-app.get('/register', function(req, res) {
+app.get(['/register', '/register.html'], function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'register.html'));
 });
 
-app.get(['/login', '/login.html'] function(req, res) {
+app.get(['/login', '/login.html'], function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'login.html'));
 });
 
-app.get('/dashboard', function(req, res) {
+app.get(['/dashboard', '/dashboard.html'], function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'dashboard.html'));
 });
 
-app.get('/submit-report', function(req, res) {
+app.get(['/submit-report', '/submit-report.html'], function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'submit-report.html'));
 });
 
-app.get('/admin', function(req, res) {
+app.get(['/admin', '/admin.html'], function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'admin.html'));
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
-  console.log('Server running on http://localhost:3000');
+  console.log('Server running on port ' + PORT);
 });
