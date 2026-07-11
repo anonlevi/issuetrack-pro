@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Report = require('../models/Report');
-const User = require('../models/User');
+const Report = require('../models/report');
+const User = require('../models/user');
 
 // Middleware to check if admin
 function isAdmin(req, res, next) {
