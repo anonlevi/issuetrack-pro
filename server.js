@@ -35,7 +35,7 @@ app.get('/register', function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'register.html'));
 });
 
-app.get('/login', function(req, res) {
+app.get(['/login', '/login.html'] function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'login.html'));
 });
 
