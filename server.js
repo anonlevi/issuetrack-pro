@@ -31,23 +31,23 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-app.get('/register.html', function(req, res) {
+app.get('/register', function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'register.html'));
 });
 
-app.get('/login.html', function(req, res) {
+app.get('/login', function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'login.html'));
 });
 
-app.get('/dashboard.html', function(req, res) {
+app.get('/dashboard', function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'dashboard.html'));
 });
 
-app.get('/submit-report.html', function(req, res) {
+app.get('/submit-report', function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'submit-report.html'));
 });
 
-app.get('/admin.html', function(req, res) {
+app.get('/admin', function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'admin.html'));
 });
 
